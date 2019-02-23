@@ -118,7 +118,7 @@ In this work, a multiplexing scheme with two-step strategy is presented in Secti
 
 \section{Strategy to multiplex the eMBB and URLLC UEs}\label{II}
 
-\subsection{Overlap indication and explicit HARQ ACK feedback}\label{IIAA}
+\subsection{Overlap indication and explicit HARQ acknowledgement (ACK) feedback}\label{IIAA}
 To overcome the problem of the UL GB eMBB and GF URLLC transmissions as shown in Fig.~\ref{fig1}, a strategy which consists of two steps is implemented. 
 
 In the first step, upon scheduling a GB transmission from the eMBB UE over the GF resources, the gNB sends an indication of resource overlap to the URLLC UEs. As the gNB does not know which of the URLLC UEs configured for GF resources may become active in the current interval, this indication needs to be sent to all UEs who have been configured with the GF resources in the current interval as illustrated in Fig.~\ref{fig2}. Upon receiving this overlap indication, the URLLC UEs are aware of the resources which have been dynamically scheduled for other UEs (the eMBB UEs for example) and in case of transmission, they know that their transmissions will be received with increased interference and trigger a mechanism in the next step to deal with this interference.
