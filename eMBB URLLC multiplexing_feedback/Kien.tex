@@ -68,7 +68,7 @@ Emails: umer.salim@tcl.com}
 \maketitle
 
 \begin{abstract}
-A multiplexing of Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) with different requirements in an overlapped time and frequency resources degrades the performance of URLLC and prevents it from attaining the strict requirements of reliability and latency. In this paper, a two-step strategy containing an overlap indication and explicit HARQ feedback is proposed to improve URLLC performance in multiplexing with eMBB. Besides explicit HARQ feedback, a scheme with an additional Scheduling Request (SR) to increase diversity of system is also presented.
+A multiplexing of Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) with different requirements in an overlapped time and frequency resources degrades the performance of URLLC and prevents it from attaining the strict requirements of reliability and latency. In this paper, a two-step strategy containing an overlap indication and explicit Hybrid automatic repeat request (HARQ) feedback is proposed to improve URLLC performance in multiplexing with eMBB. Besides explicit HARQ feedback, a scheme with an additional Scheduling Request (SR) to increase diversity of system is also presented.
 
 \end{abstract}
 
@@ -87,7 +87,7 @@ Subcarrier spacings (SCS) has a flexible range from 15 kHz to 240 kHz in 5G that
 Another feature is the standardization of the grant-free (GF)/configured-grant (CG) UL transmissions which allows the UEs to transmit data in the UL direction without having to make an explicit scheduling request (SR) and receiving an UL grant each time before a transmission\cite{ad4}.
 
 \subsection{Problem of multiplexing URLLC and eMBB in GF resources}\label{IBB}
-In 5G, a gNB is able to schedule pre-configured resources (GF/CG resources) for URLLC UEs. But the gNB does not have any prior information which of these GF resources will actually be used by URLLC UEs or which of the UEs in the group configured to the resources will use a specific resource. If the cell is loaded and the gNB schedules some eMBB UEs on the resource overlapping with configured-grant occasion, as shown in Fig.~\ref{fig1}, there is going to be transmission collision of dynamically scheduled eMBB and URLLC GF transmissions. 
+In 5G, a base station (gNB) is able to schedule pre-configured resources (GF/CG resources) for URLLC UEs. But the gNB does not have any prior information which of these GF resources will actually be used by URLLC UEs or which of the UEs in the group configured to the resources will use a specific resource. If the cell is loaded and the gNB schedules some eMBB UEs on the resource overlapping with configured-grant occasion, as shown in Fig.~\ref{fig1}, there is going to be transmission collision of dynamically scheduled eMBB and URLLC GF transmissions. 
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[scale=0.22]{fig1.png}}
