@@ -8,7 +8,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{verbatim}
-\usepackage{tabto}
+%\usepackage{tabto}
 \usepackage{mathtools, nccmath}
 %KHOA BEGIN
 \usepackage{multirow}
@@ -263,9 +263,7 @@ Due to a collision between DMRS of the URLLC UE of interest and data/DMRS of ano
         &+ (1-P^{e}_{DMRS1})P^{e}_{d1}(P^{e}_{DMRS2} + (1-P^{e}_{DMRS2})P^{e}_{d2}),\label{eq1}   
 \end{split}
 \end{equation}
-where $ P^{e}_{DMRS1}, P^{e}_{DMRS2}$: the miss detection probability of the initial and retransmitted DMRS
-
-\quad$P^{e}_{d1}, P^{e}_{d1}$: the error probability of the initial and retransmitted PUSCH
+where $ P^{e}_{DMRS1}, P^{e}_{DMRS2}$ are the miss detection probability of the initial (with collision) and retransmitted (without collision) DMRS (see Figure \ref{fig5}), and $P^{e}_{d1}, P^{e}_{d2}$ are the error probabilities of the initial and retransmitted PUSCH.
 
 In \eqref{eq1}, the first term is the error probability when the gNB cannot detect DMRS to decode or reschedule data so the UE does not retransmit data and data is lost. The second term is the error probability when the gNB detects DMRS and indentifies UE ID but fails to decode data so it reschedules data. However, it cannot decode the retransmission and an error still occurs.
 
