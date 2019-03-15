@@ -31,17 +31,17 @@
 %\thanks{Identify applicable funding agency here. If none, delete this.}
 }
 
-\author{\IEEEauthorblockN{Trung-Kien Le, Florian Kaltenberger}
-\IEEEauthorblockA{\textit{EURECOM} \\
+\author{\IEEEauthorblockN{Trung-Kien Le$^{\dagger}$, Umer Salim$^{\star}$, Florian Kaltenberger$^{\dagger}$}
+\IEEEauthorblockA{$^{\dagger}$EURECOM, Sophia-Antipolis, France \\
 %\textit{name of organization (of Aff.)}\\
-Biot, France \\
-Emails: first name.last name@eurecom.fr}
-\and
-\IEEEauthorblockN{Umer Salim}
-\IEEEauthorblockA{\textit{TCL Communication} \\
+$^{\star}$TCL Mobile, Sophia-Antipolis, France \\
+Trung-Kien.Le@eurecom.fr}
+%\and
+%\IEEEauthorblockN{Umer Salim}
+%\IEEEauthorblockA{\textit{TCL Communication} \\
 %\textit{name of organization (of Aff.)}\\
-Paris, France \\
-Emails: umer.salim@tcl.com}
+%Paris, France \\
+%Emails: umer.salim@tcl.com}
 %\and
 %\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
 %\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
@@ -71,7 +71,15 @@ Emails: umer.salim@tcl.com}
 \maketitle
 
 \begin{abstract}
-In uplink (UL) transmission, the Ultra-Reliable Low-Latency Communication (URLLC) users (UEs) due to tight latency requirement might be assigned the grant-free (GF)/configured-grant (CG) resources to transmit data straightaway instead of sending scheduling request (SR) and receiving UL grant. However, the URLLC traffic is sporadic, thus, the base station (called gNB) can dynamically schedule the Enhanced Mobile Broadband (eMBB) UEs to transmit in the GF resources to increase the efficiency of resource utilization. This leads to another concern when a multiplexing of URLLC and eMBB UEs with different requirements in an overlapped time and frequency resource degrades the performance of URLLC and prevents it from attaining the strict requirements of reliability and latency. In this paper, a two-step strategy containing an overlap indication and explicit Hybrid automatic repeat request (HARQ) feedback is proposed to improve URLLC performance in multiplexing with eMBB. Besides the explicit HARQ feedback structure, a scheme with an additional SR is also presented. Simulation results show that these two schemes help to reduce error probability due to Demodulation Reference Signal (DMRS) miss-detection.
+In uplink (UL) transmission, the Ultra-Reliable Low-Latency Communication (URLLC) users (UEs) might be assigned the grant-free (GF)/configured-grant (CG) periodic resources to transmit data straightaway instead of sending scheduling
+request (SR) and receiving UL grant. However, when these resources are not in use by the URLLC traffic, the base station (called gNB) can dynamically schedule the Enhanced Mobile Broadband (eMBB) UEs to transmit in the GF resources to increase the resource efficiency. This may lead to potential collision and detrimental QoS for URLLC as some of the URLLC UEs may become active and try to use the same resource assigned to an eMBB UE. In this paper, a two-step strategy
+containing an overlap indication and explicit Hybrid
+automatic repeat request (HARQ) feedback is proposed
+to improve URLLC performance in multiplexing with
+eMBB. Besides the explicit HARQ feedback structure, a
+scheme with an additional SR is also presented. Simulation
+results show that these two schemes help achieving URLLC requirements by reducing error probability due to Demodulation Reference Signal (DMRS) miss-detection while allowing better resource efficiency.
+
 
 \end{abstract}
 
@@ -83,14 +91,14 @@ In uplink (UL) transmission, the Ultra-Reliable Low-Latency Communication (URLLC
 One main target of the 5G New Radio (NR) standard is to support URLLC for devices requiring low latency and high link reliability. In \cite{b6}, The 3rd Generation Partnership Project (3GPP) defines targets for the URLLC scenario: ``A general URLLC reliability requirement for one transmission of a packet is 10\textsuperscript{-5} for 32 bytes with a user plane latency of 1 ms''. The next release of 3GPP will have higher requirements of URLLC: ``Higher reliability (up to 10\textsuperscript{-6}), higher availability, short latency in the order of 0.5 to 1 ms, depending on the use cases (factory automation, transport industry and electrical power distribution)''\cite{b8}.
 
 \subsection{Techniques accepted in 3GPP Release 15}\label{IAA}
-3GPP Release 15 specified new features in physical layer design to help URLLC achieve the requirements.
+3GPP Release 15 specified new features in physical layer design to help URLLC achieve its requirements.
 
 Subcarrier spacings (SCS) has a flexible range from 15 kHz to 240 kHz in 5G that results in very short symbol and slot timings\cite{ad2}. In addition, the transmission is scheduled in  mini-slot level in both UL and downlink (DL)\cite{ad3}. Due to these features, the network becomes very reactive to UEs' UL and DL traffic demands and the response time to accommodate DL or UL traffic is very small compared to Long-Term Evolution (LTE) and LTE-Advanced.
 
-Another feature is the standardization of the GF/CG UL transmissions which allows the UEs to transmit data in UL without having to make an explicit SR and receiving an UL grant to reduce latency \cite{ad4}.
+Another feature is the standardization of the GF/CG UL transmissions which allows the UEs to transmit data in UL without having to transmit an explicit SR and receiving an UL grant to reduce latency \cite{ad4}.
 
 \subsection{Problem of multiplexing URLLC and eMBB in GF resources}\label{IBB}
-In 5G, as mentioned in Section \ref{IAA}, the gNB is able to schedule GF resources for URLLC UEs but it does not have any prior information which of these GF resources will actually be used by URLLC UEs or which of the UEs in the group configured to the resources will use a specific resource. If the cell is loaded and the gNB schedules some eMBB UEs on the resource overlapping with CG occasion, as shown in Fig.~\ref{fig1}, there is going to be transmission collision of dynamically scheduled eMBB and URLLC GF transmissions. 
+In 5G, as mentioned in Section \ref{IAA}, the gNB can schedule GF resources for URLLC UEs but it does not have any prior information which of these GF resources will actually be used by URLLC UEs or which of the UEs in the group configured to the resources will use a specific resource. If the cell is loaded and the gNB schedules some eMBB UEs on the resource overlapping with CG occasion, as shown in Fig.~\ref{fig1}, there is going to be transmission collision of dynamically scheduled eMBB and URLLC GF transmissions. 
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[scale=0.25]{fig1.PNG}}
@@ -108,9 +116,10 @@ The increased interference due to overlapping transmissions of eMBB and URLLC UE
 The timer-based HARQ feedback and UL GB retransmission are standardized because this minimizes the control overhead for sending HARQ feedback. This is reasonable in general but in the cases of dynamic UL multiplexing, giving rise to overlapping transmissions with GF UEs, when the gNB will not be able to identify the UEs transmitting on GF resources, the UEs will discard their packets and consider the successful detection that leads to serious performance degradation for URLLC UEs.
 
 \subsection{Prior art}\label{ICC}
-In \cite{b2} and \cite{b3}, when there is an overlap, the gNB asks the URLLC UE to apply a different pre-configured transmission power that is higher than power level used in case of no overlap. However, an increase of power causes an interference among the neighboring cells and is not suitable to the cell-edge UEs because of power limitation. This is also the problems of \cite{b5} when the gNB assigns URLLC physical uplink shared channel (PUSCH) with updated transmission parameters such as resource, MCS, transmit power, etc. on GF resources that are occupied by eMBB PUSCH. 
+In \cite{b2} and \cite{b3}, when there is an overlap, the gNB asks the URLLC UE to apply a different pre-configured transmission power that is higher than power level used in case of no overlap. However, an increase of power
+causes an interference among the neighboring cells. Secondly the cell-edge UEs may be power limited and cannot raise their transmission power. This is also the problems of \cite{b5} when the gNB assigns URLLC physical uplink shared channel (PUSCH) with updated transmission parameters such as resource, MCS, transmit power, etc. on GF resources that are occupied by eMBB PUSCH. 
 
-In \cite{b7}, the group common control channel reveals resource range allocated to GB eMBB UE so the GF UE can exclude the occupied resource. Nevertheless, the GF UE has less resources left to transmit than the original configured resources so it might deteriorate transmission's reliability.
+In \cite{b7}, the group common control channel reveals resource range allocated to GB eMBB UE so the GF UE can exclude the occupied resource. Nevertheless, the GF UE has less resources left to transmit than the original configured resources so this partial transmission may not be decodable at the gNB.
 
 In \cite{b9}, the gNB informs the URLLC UE which of the GF resource set has overlapping eMBB transmission such that the URLLC UE can initiate the GF transmission over resources not occupied by the ongoing eMBB transmission. It might result in high latency if all resources in the current occasion are full and the UE must wait until the next transmission occasion.
 
@@ -120,13 +129,11 @@ A SIC receiver in \cite{b11} only benefits eMBB UE rather than URLLC UE because 
 
 In this work, a multiplexing scheme with two-step strategy is presented in Section \ref{II}. The first step comprises of the gNB transmitting an overlap indication whenever it schedules an UL transmission having an overlap with the resources configured to the GF transmissions. The second step of the proposed strategy comprises of making the overlapped transmissions to use explicit HARQ feedback structure. An alternative way of the second step is to make the gNB indicate the UEs to send SR in parallel to data transmitted on the GF resources to improve the reliability. Section \ref{III} shows numerical results and performance evaluation. Finally, Section \ref{IV} is conclusion.
 
-%Firstly, reserved resources and calculations to optimize their sizes are presented in Section \ref{II}. The process allowing the UEs to access to these resources is also discussed. Section \ref{III} shows numerical results obtaining from the equations derived in diverse scenarios. Finally, Section \ref{IV} provides the concluding remarks for this work.
-
 \section{Strategy to multiplex the eMBB and URLLC UEs}\label{II}
 
 \subsection{Overlap indication and explicit HARQ acknowledgement (ACK) feedback}\label{IIAA}
 
-To overcome the problem of the UL GB eMBB and GF URLLC transmissions as shown in Fig.~\ref{fig1}, a strategy which consists of two steps is implemented. In the first step, upon scheduling a GB transmission of the eMBB UE over the GF resources, the gNB sends an indication of resource overlap to the URLLC UEs. As the gNB does not know which of the URLLC UEs configured for GF resources may become active in the current interval, this indication needs to be sent to all UEs who have been configured with the GF resources in the overlapping interval as illustrated in Fig.~\ref{fig2}. Upon receiving this overlap indication, the URLLC UEs are aware of the resources which have been dynamically scheduled for other UEs (the eMBB UEs for example) and in case of transmission, they know that their transmissions will be received with an increased interference and trigger a mechanism in the next step to deal with this interference.
+This paper proposes two-step strategy to overcome the problem of the multiplexed UL eMBB and URLLC transmissions. In the first step, upon scheduling a GB transmission of the eMBB UE over the GF resources, the gNB sends an indication of resource overlap to the URLLC UEs. As the gNB does not know which of the URLLC UEs configured for GF resources may become active in the current interval, this indication needs to be sent to all UEs who have been configured with the GF resources in the overlapping interval as illustrated in Fig.~\ref{fig2}. Upon receiving this overlap indication, the URLLC UEs are aware of the resources which have been dynamically scheduled for other UEs and in case of transmission,  their transmissions will be received with an increased interference.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[scale=0.22]{fig2.PNG}}
@@ -135,9 +142,9 @@ To overcome the problem of the UL GB eMBB and GF URLLC transmissions as shown in
 \vspace{-2mm}
 \end{figure}
 
-The second step of the proposed strategy comprises of making the overlapping transmissions use explicit HARQ feedback structure rather than legacy timer-based feedback. The resource overlap indication can serve this purpose by containing a 1-bit flag to tell if the feedback becomes explicit or not. Upon receiving this indication, the URLLC UEs, who transmit on the overlapping resources, expect to receive explicit HARQ feedback for their transmissions. 
+The second step of the proposed strategy comprises of making the overlapping transmissions use explicit HARQ feedback structure rather than legacy timer-based feedback. The resource overlap indication can serve this purpose by containing a 1-bit flag to tell if the feedback becomes explicit or not. Upon receiving this indication, the URLLC UEs, who transmit on the overlapping resources, expect to receive explicit HARQ feedback from the gNB for their transmissions. 
 
-Thereby, within a configured time period, the GF UEs receive either explicit HARQ ACK indicating the successful detection of their TB or UL grant for re-transmission in case the gNB failed to decode the TB but was able to identify the transmitting UE.  For the third case, if the gNB even fails to identify the UE due to high interference (DMRS miss-detection), it cannot schedule the UE for a re-transmission in the conventional timer-based feedback so the UE assumes that a packet is decoded correctly and drops it from buffer to transmit the next packet. This is the scenario where explicit HARQ feedback becomes the most promising. If the GF UE receives neither an ACK nor an UL grant within a configured time, the UE does not consider that its data is successful, rather it considers that the gNB failed to identify its identity (ID) due to high interference in the overlapping transmissions and retransmits the TB on the subsequent GF resources. Table~\ref{tab3} summarizes the operation of conventional timer-based feedback structure and explicit feedback structure.
+Thereby, within a configured time period, the GF UEs receive either explicit HARQ ACK indicating the successful detection of their TB or UL grant for re-transmission in case the gNB failed to decode the TB but was able to identify the transmitting UE.  For the third case, if the gNB even fails to identify the UE due to high interference (DMRS miss-detection), it cannot schedule the UE for a re-transmission in the conventional timer-based feedback so the UE assumes that a packet is decoded correctly and drops it from buffer to transmit the next packet. This is the scenario where our proposed explicit HARQ feedback becomes the most promising. If the GF UE receives neither an ACK nor an UL grant within a configured time, the UE does not consider that its data is successful, rather it considers that the gNB failed to identify its identity (ID) due to high interference in the overlapping transmissions and retransmits the TB on the subsequent GF resources. Table~\ref{tab3} summarizes the operation of conventional timer-based feedback structure and explicit feedback structure.
 
 \begin{table}[htbp]
 \caption{Comparison of different feedback structures}
@@ -162,16 +169,16 @@ DMRS: failed&No ACK/UL grant: packet lost&No ACK/UL grant: packet retransmitted 
 \vspace{-4mm}
 \end{table}
 
-In addition, the URLLC transmission can be made to stop immediately after receiving an explicit HARQ feedback. Thus, the URLLC UE does not need to carry out all repetitions as configured in parameter repK from higher layer. It helps the URLLC UE save power and resources. Besides, the eMBB UE also avoids suffering from an interference from the URLLC UE’s repetitions and there is more chance that the gNB is still able to decode correctly eMBB data despite the collision with URLLC data at the beginning. 
+%In addition, the URLLC transmission can be made to stop immediately after receiving an explicit HARQ feedback. Thus, the URLLC UE does not need to carry out all repetitions as configured in parameter repK from higher layer. It helps the URLLC UE save power and resources. Besides, the eMBB UE also avoids suffering from an interference from the URLLC UE’s repetitions and there is more chance that the gNB is still able to decode correctly eMBB data despite the collision with URLLC data at the beginning. 
 
-The timer value, for which the UE should wait to receive ACK or UL grant, can be configured by radio resource control (RRC) parameters. This value can be selected as a function of reliability and latency targets of the UEs. For some UEs with extremely high latency and reliability targets, this timer value can be put to zero which means to do the automatic transmission in case of overlapping transmissions.
+The timer value, for which the UE should wait to receive ACK or UL grant, can be configured by radio resource control (RRC) parameters. This value can be selected as a function of reliability and latency targets of the UEs. For some UEs with extremely high latency and reliability targets, this timer value can be put to zero which means to do the automatic transmission in case of overlapping transmissions to maximize the chance of correct data detection at the gNB.
 
 \begin{comment}
 In one strategy, it could be decided that all the overlapping GF transmissions use explicit HARQ feedback. In this case, no explicit signalling or flag is needed to indicate the activation of explicit HARQ feedback. Thus, the GF UEs upon knowing that they will transmit on the overlapping resources expect explicit HARQ feedback. There could, though, exist some cases where the gNB knows that it has configured large number of repetitions for GF UEs or it has scheduled the dynamic UL transmission from eMBB UE with a lower power, which will result in a good probability of successful detection or at least UE identification and it decides not to change the HARQ to explicit feedback. To keep the flexible control at the network side, the overlap indication can comprise an indication, a flag, which tells if the feedback becomes explicit or not in the indicated overlapping GF occasions.
 \end{comment}
 
 \subsection{Overlap indication and additional SR}\label{IIBB}
-In a variation of the proposed scheme in Section \ref{IIAA}, the second step of making the transmissions explicit HARQ feedback-based can be altered to use an additional SR. The gNB can indicate the URLLC GF UEs by overlap indication in the first step described in Section \ref{IIAA} to send a SR in parallel for the TB transmitted over the overlapping GF resources. The SR sent to the gNB will provide a further means besides DMRS detection to detect the ID of the UE transmitting in the interfered GF transmission. When the gNB is unable to identify the UE making the GF transmission because of DMRS miss-detection, the gNB still can identify that UE by decoding the additional SR and react fast to the received SR by sending an UL grant to this UE. Thanks to the UL grant, the UE is likely to retransmit the packet and has a successful transmission in latency budget instead of assuming a succesful transmission and dropping the packet as in the conventional scheme. When the gNB is able to decode the data successfully, it still react to SR to send some indications to the UE about the successful detection.  
+In a variation of the proposed scheme in Section \ref{IIAA}, the second step of making the transmissions explicit HARQ feedback-based can be replaced to use an additional SR. The gNB can indicate the URLLC GF UEs by overlap indication in the first step described in Section \ref{IIAA} to send a SR in parallel for the TB transmitted over the overlapping GF resources. The SR sent to the gNB will provide a further means besides DMRS detection to detect the ID of the UE transmitting in the interfered GF transmission. When the gNB is unable to identify the UE making the GF transmission because of DMRS miss-detection, the gNB still can identify that UE by decoding the additional SR and react fast to the received SR by sending an UL grant to this UE. Thanks to the UL grant, the UE is likely to retransmit the packet and has a successful transmission in latency budget instead of assuming a succesful transmission and dropping the packet as in the conventional scheme. When the gNB is able to decode the data successfully, it still reacts to SR to send some indications to the UE about the successful detection.  
 
 Physical uplink control channel (PUCCH) and PUSCH are not allowed to be transmitted simultaneously. In case the UE needs to transmit uplink control information (UCI) while transmitting UL data on PUSCH, it sends the UCI on PUSCH. When the UE is not transmitting PUSCH, it sends the UCI carrying SR, feedback for DL data  etc, on the PUCCH resources using appropriate PUCCH format as a function of UCI content and the PUCCH configurations. The simplest strategy to send SR (which is UCI) when the URLLC UE is transmitting over overlapping GF resources would be to transmit it over PUSCH GF resources along with the transmission of the TB. This can be simple from implementation perspective but from the performance point of view, better performance can be expected if the SR is transmitted using PUCCH configuration on the specified PUCCH resources. As PUCCH resources are dedicated resources on different frequency physical resource blocks (PRBs) and OFDM symbols, this provides additional diversity advantage to the SR transmitted in these resources compared to multiplexing and transmitting it over UL GF resources along with the TB. Therefore, the UE is configured to transmit this SR on PUCCH resources in parallel to the transmission of TB on the overlapping resources.
 
@@ -184,7 +191,7 @@ The overlap indication can further be enhanced to modify or update some of the t
 \subsection{Configuration and Signalling for the Overlap Indication}\label{IICC}
 One very important feature of the proposed scheme is that the overlap indication is sent to the UEs who have been pre-configured for the GF resources. As GF resources may be shared by multiple UEs, and the gNB has no idea a priori which of these UEs may transmit their data over GF resources, this overlap indication is sent in a group-common manner. Thus, the proposal is to send the overlap indication in a group-common downlink control information (DCI).
 
-For overlap indication sent in group-common DCI, the DCI format 2\_1 in \cite{ad6}, which is used for DL pre-emption indication, can be used for UL overlap indication. The size of DCI format 2\_1 is configurable by higher layers up to 126 bits and each indication has 14 bits. 
+For UL overlap indication sent in group-common DCI, a DCI format similar to the DCI format 2\_1 in \cite{ad6} can be used. DCI 2\_1 is used for DL pre-emption indication. The size of DCI format 2\_1 is configurable by higher layers up to 126 bits and each indication has 14 bits. 
 
 The UL overlap indication sent to the URLLC UEs comprises of the indication of UL GF resources typically scheduled for the eMBB UEs. The eMBB UEs would be normally scheduled for the slot duration or most part of the valid UL symbols so it would be judicious to have more bits of UL reference resource field defining the frequency granularity. To keep a format close to the DL pre-emption indication and adapted to indicate the UL overlap resource, there are two possibilities of UL overlap indication. In the first design, all 14 bits are used to indicate the frequency PRB region for the whole slot. Thus, each bit in the 14-bit long bitmap indicates 1/14 of the frequency PRBs of the carrier as shown in left part of Fig.~\ref{fig3}. The second option is to split the time-frequency grid of the slot in 7 frequency zones each spanning one half slot. Thus, each bit may indicate an overlap over 1/7 of the frequency PRBs for a half slot time duration as illustrated in right part of Fig.~\ref{fig3}. 
 
@@ -284,7 +291,7 @@ In the proposed strategy, the gNB shifts the GF transmissions in the overlap reg
 
 Simulation parameters are shown in Table~\ref{tab1}. Fig.~\ref{fig5} illustrates the performance of DMRS detection in three cases: the URLLC UE transmits in the GF resources without any collision with another eMBB UE, the URLLC UE has a collision with an eMBB UE at the same power level and the URLLC UE has a collision when increasing power 1dB higher than an eMBB UE. For each DMRS detection, the correlation result is compared with a threshold to determine whether DMRS exists or not. This threshold is chosen according to a target false alarm rate (FAR) indicating the cases that the gNB determines the existence of DMRS while in reality there is no DMRS transmitted. A higher threshold is required for a lower FAR but also results in more missed detection.
 
-Due to a collision between DMRS of the URLLC UE of interest and data/DMRS of another eMBB UE, the performance of DMRS detection of the URLLC UE degrades significantly as can be seen in Fig.~\ref{fig5} and cannot achieve the miss detection probability 10\textsuperscript{-5} at the same SNR level of the case without collision. At FAR of 0.001 and SNR of -1.4dB, the miss detection probability increases from 10\textsuperscript{-5} of the case without collision to 3.4$\times$10\textsuperscript{-4} of the case with a collision with an eMBB UE at the same power. Fig.~\ref{fig5} also shows that even with power control scheme in \cite{b2} and \cite{b3} when the URLLC UE's power increases 1dB higher than the eMBB UE's power, miss detection probability is still 2.44$\times$10\textsuperscript{-4} that is higher than 10\textsuperscript{-5} of the case without collision. As DMRS dectection is mandatory for channel estimation to decode data as well as for recognizing UE ID to reschedule a retransmission if necessary in conventional scheme, a degradation of DMRS detection makes the system not be able to support stringent reliability URLLC requirement. Block error rate (BLER) of an UL transmission with one potential retransmission in the conventional scheme or power control scheme ($ P^{e}_{1}$) is calculated as\useshortskip
+Due to a collision between DMRS of the URLLC UE of interest and data/DMRS of another eMBB UE, the performance of DMRS detection of the URLLC UE degrades significantly as can be seen in Fig.~\ref{fig5} and cannot achieve the miss detection probability 10\textsuperscript{-5} at the same SNR level of the case without collision. At FAR of 0.001 and SNR of -1.4dB, the miss detection probability increases from 10\textsuperscript{-5} of the case without collision to 3.4$\times$10\textsuperscript{-4} of the case with a collision with an eMBB UE at the same power. Fig.~\ref{fig5} also shows that even with power control scheme in \cite{b2} and \cite{b3} when the URLLC UE's power increases 1dB higher than the eMBB UE's power, miss detection probability is still 2.44$\times$10\textsuperscript{-4} that is higher than 10\textsuperscript{-5} of the case without collision. As DMRS dectection is mandatory for channel estimation to decode data as well as for recognizing UE ID to reschedule a retransmission if necessary in conventional scheme, a degradation of DMRS detection makes the system unable to support reliability URLLC requirement. Block error rate (BLER) of an UL transmission with one potential retransmission in the conventional scheme or power control scheme ($ P^{e}_{1}$) is calculated as\useshortskip
 
 \begin{equation}
 \begin{split}
@@ -309,7 +316,7 @@ Compared to \eqref{eq1}, the first term in \eqref{eq2} is enhanced because of a 
 
 The final column in Table~\ref{tab2} shows a remarkable enhancement of the first term of error probability in UL transmission with explicit HARQ feedback in case of URLLC and eMBB multiplexing in comparison to the conventional scheme with timer-based feedback and power control scheme in \cite{b2} and \cite{b3}. Moreover, the proposed scheme can be applied to all UEs in a cell while the power control scheme to increase URLLC UEs' power cannot be applied to the cell-edge UEs because of power limitation. 
 
-Table~\ref{tab2} also shows an improvement of UE ID detection (the first term in \eqref{eq3}) when an additional SR is transmitted in parallel with data in GF resources so the error probability because of DMRS miss-detection decreases. BLER of an UL transmission with one potential retransmission in the proposed scheme with an additional SR ($ P^{e}_{3}$) is calculated as\useshortskip
+Table~\ref{tab2} also shows an improvement of UE ID detection (the first term in \eqref{eq3}) compared to the conventional and power control schemes when an additional SR is transmitted in parallel with data in GF resources so the error probability because of DMRS miss-detection decreases. BLER of an UL transmission with one potential retransmission in the proposed scheme with an additional SR ($ P^{e}_{3}$) is calculated as\useshortskip
 
 \begin{equation}
 \begin{split}
@@ -328,7 +335,7 @@ Compared to conventional scheme, overhead of explicit feedback structure is high
 
 \section{Conclusion}\label{IV}
 
-This paper presents a strategy to multiplex the GB eMBB and GF URLLC transmission while guaranteeing the strict requirements of URLLC. An overlap indication is used and combined with an explicit HARQ feedback or an additional SR to help reduce the error probability of URLLC UE in case of DMRS miss-detection.
+This paper presents a strategy to multiplex the GB eMBB and GF URLLC transmission while guaranteeing the strict requirements of URLLC. An overlap indication is used and combined with an explicit HARQ feedback or an additional SR to help reduce the error probability of URLLC UE in case of DMRS miss-detection. The proposed scheme provides a mechanism to meet very stringent URLLC constraints with minimal additional control overhead.
 
 \begin{thebibliography}{00}
 \bibitem{b6} 3GPP TR 38.913 v15.0.0, ``Study on scenarios and requirements for next generation access technologies.''
